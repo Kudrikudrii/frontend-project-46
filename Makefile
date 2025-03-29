@@ -12,3 +12,11 @@ lint: #Запуск npx eslint .
 
 test:
 		npm test
+
+test-coverage:
+		npm test -- --coverage --coverageProvider=v8
+
+publish:
+		npx release-it
+
+.PHONY: test
