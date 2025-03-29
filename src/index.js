@@ -33,7 +33,7 @@ const getDiff = (filepath1, filepath2) => {
   //   { status: 'added', key: 'verbose', value: true }
   // ]
   const formatDiff = stylish(dataDiff);
-  console.log(formatDiff);
+  return formatDiff;
 };
 
 export default getDiff;
