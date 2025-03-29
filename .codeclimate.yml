@@ -1,0 +1,18 @@
+version: '2' # версия конфига
+
+# Плагины для анализа кода
+plugins:
+  eslint:
+    enabled: true # проверка стиля кода ESLint
+    channel: 'eslint-8' # версия ESLint
+
+  duplication:
+    enabled: true # поиск дублированного кода
+    config:
+      languages:
+        - javascript # анализировать только JS
+
+# Настройки "поддержания" кода (maintainability)
+ratings:
+  paths:
+    - '**.js' # проверять только JS-файлы
