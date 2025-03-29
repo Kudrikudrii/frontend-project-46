@@ -1,7 +1,3 @@
-import _ from 'lodash';
-
-const data = {};
-
 const stylish = (arrData) => {
   const result = arrData.flatMap((key) => {
     const status = key.status;
