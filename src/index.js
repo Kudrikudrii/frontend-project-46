@@ -3,7 +3,7 @@ import path from 'path';
 import parse from './parse.js';
 import stylish from './formatters/stylish.js';
 import treeBuilder from './treeBuilder.js';
-
+/* eslint-disable no-undef */
 const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
 // const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
 
@@ -17,7 +17,7 @@ const getData = (filepath) => parse(fs.readFileSync(filepath, 'utf-8'), extractF
 //   proxy: '123.234.53.22',
 //   follow: false
 // }
-const genDiff = (filepath1, filepath2) => {
+const getDiff = (filepath1, filepath2) => {
   const fullFilePath1 = getFullPath(filepath1);
   const fullFilePath2 = getFullPath(filepath2);
 
@@ -36,4 +36,4 @@ const genDiff = (filepath1, filepath2) => {
   console.log(formatDiff);
 };
 
-export default genDiff;
+export default getDiff;
