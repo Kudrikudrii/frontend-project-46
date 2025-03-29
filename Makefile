@@ -9,3 +9,6 @@ gendiff:
 
 lint: #Запуск npx eslint .
 		npx eslint .
+
+test:
+		npm test
