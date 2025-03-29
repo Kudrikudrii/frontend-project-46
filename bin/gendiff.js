@@ -10,8 +10,8 @@ program
   .arguments('<filepath1> <filepath2>')
   .option('-f, --format [type]', 'output format', 'stylish')
   .helpOption('-h, --help', 'display help for command')
-  .action((filepath1, filepath2) => {
-    const diff = getDiff(filepath1, filepath2);
+  .action((filepath1, filepath2, options) => {
+    const diff = getDiff(filepath1, filepath2, options.format);
     console.log(diff);
   });
 
