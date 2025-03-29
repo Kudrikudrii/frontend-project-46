@@ -1,10 +1,12 @@
 import fs from 'fs';
 import path from 'path';
 import parse from './parse.js';
-import treeBuilder from './treeBuilder.js';
 import stylish from './formatters/stylish.js';
+import treeBuilder from './treeBuilder.js';
 
 const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
+// const getFullPath = (filepath) => path.resolve(process.cwd(), filepath);
+
 // /home/kudri/frontend-project-46/__fixtures__/file1.json
 const extractFormat = (filepath) => path.extname(filepath).slice(1);
 // json
@@ -32,7 +34,6 @@ const genDiff = (filepath1, filepath2) => {
   // ]
   const formatDiff = stylish(dataDiff);
   console.log(formatDiff);
-  // console.log(data2);
 };
 
 export default genDiff;
