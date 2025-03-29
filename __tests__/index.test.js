@@ -2,6 +2,7 @@ import getDiff from '../src/index.js';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
+import { test, expect } from '@jest/globals';
 
 const __filename = fileURLToPath(import.meta.url); // Полный путь к текущему файлу
 const __dirname = path.dirname(__filename); // Директория файла
