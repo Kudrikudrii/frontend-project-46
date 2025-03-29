@@ -8,7 +8,7 @@
   },
   "type": "module",
   "scripts": {
-    "test": "jest --coverage --coverageReporters=text-lcov > coverage.lcov"
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage"
   },
   "repository": {
     "type": "git",
