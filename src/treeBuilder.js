@@ -8,7 +8,7 @@ const treeBuilder = (data1, data2) => {
     const newValue = data2[key];
 
     if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-      return { status: 'nested', key, children: getDiffTree(data1[key], data2[key]) };
+      return { status: 'nested', key, children: treeBuilder(data1[key], data2[key]) };
     }
 
     if (Object.hasOwn(data1, key) && Object.hasOwn(data2, key) && data1[key] !== data2[key]) {
