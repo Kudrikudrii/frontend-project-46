@@ -2,9 +2,9 @@ import getDiff from '../src/index.js';
 import { fileURLToPath } from 'url';
 import fs from 'fs';
 import path from 'path';
-import { test, expect, describe } from '@jest/globals';
+import { test, expect, describe, it } from '@jest/globals';
 import getStylishFormat from '../src/formatters/stylish.js';
-import getPlainFormat from '../src/formatters/plain.js';
+import getPlainFormat, { getPaths } from '../src/formatters/plain.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,6 +33,7 @@ test('yml nested files plain format', () => {
 test('yaml nested files plain format', () => {
   expect(getDiff(getFixturePath('file3.yaml'), getFixturePath('file4.yaml'), 'plain')).toEqual(readFile('plainResult.txt').trim());
 });
+
 describe('getStylishFormat with unknown status', () => {
   test('should return "Unknown type: ..." for unknown status', () => {
     const invalidData = [
@@ -47,6 +48,7 @@ describe('getStylishFormat with unknown status', () => {
     expect(result).toMatch(/Unknown type: invalidStatus/);
   });
 });
+
 describe('getPlainFormat with unknown status', () => {
   test('should return "Unknown type: ..." for unknown status', () => {
     const invalidData = [
@@ -59,5 +61,16 @@ describe('getPlainFormat with unknown status', () => {
 
     const result = getPlainFormat(invalidData);
     expect(result).toMatch(/Unknown type: invalidStatus/);
+  });
+});
+
+describe('getPaths', () => {
+  it('should return simple key when no parentName provided', () => {
+    expect(getPaths('key')).toBe('key');
+  });
+
+  it('should join parentName and key with dot', () => {
+    expect(getPaths('nestedKey', 'parent')).toBe('parent.nestedKey');
+    expect(getPaths('deepKey', 'parent.nested')).toBe('parent.nested.deepKey');
   });
 });
