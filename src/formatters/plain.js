@@ -8,7 +8,7 @@ const valueUpdate = (value) => {
   return value;
 };
 
-const getPaths = (key, parentName = '') => (parentName ? `${parentName}.${key}` : key);
+export const getPaths = (key, parentName = '') => (parentName ? `${parentName}.${key}` : key);
 
 const getPlainFormat = (tree, parentName = '') => {
   const lines = tree.flatMap((node) => {
@@ -24,9 +24,7 @@ const getPlainFormat = (tree, parentName = '') => {
       case 'added':
         return `Property '${updatedPath}' was added with value: ${valueUpdate(node.value)}`;
       case 'updated':
-        return `Property '${updatedPath}' was updated. From ${valueUpdate(node.oldValue)} to ${valueUpdate(
-          node.newValue
-        )}`;
+        return `Property '${updatedPath}' was updated. From ${valueUpdate(node.oldValue)} to ${valueUpdate(node.newValue)}`;
       default:
         return `Unknown type: ${node.status}`;
     }
