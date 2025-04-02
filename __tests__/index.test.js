@@ -1,10 +1,10 @@
 import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { test, expect, describe, it } from '@jest/globals';
 import getPlainFormat, { getPaths } from '../src/formatters/plain.js';
 import getStylishFormat from '../src/formatters/stylish.js';
-import { test, expect, describe, it } from '@jest/globals';
 import getDiff from '../src/index.js';
-import { fileURLToPath } from 'url';
-import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
