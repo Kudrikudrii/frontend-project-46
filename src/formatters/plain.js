@@ -1,8 +1,11 @@
 const valueUpdate = (value) => {
+  if (value === null) {
+    return null;
+  }
   if (typeof value === 'object') {
     return '[complex value]';
   }
-  if (typeof value === 'string' || value === null) {
+  if (typeof value === 'string') {
     return `'${value}'`;
   }
   return value;
