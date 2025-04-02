@@ -12,7 +12,7 @@ const treeBuilder = (data1, data2) => {
     }
 
     if (Object.hasOwn(data1, key) && Object.hasOwn(data2, key) && data1[key] !== data2[key]) {
-      return { status: 'updated', key, oldValue: oldValue, newValue: newValue };
+      return { status: 'updated', key, oldValue, newValue };
     }
 
     if (!Object.hasOwn(data1, key) && Object.hasOwn(data2, key)) {
