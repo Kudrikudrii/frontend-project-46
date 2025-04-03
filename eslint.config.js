@@ -1,30 +1,42 @@
 import globals from 'globals';
-import pluginJs from '@eslint/js';
-import tseslint from 'typescript-eslint';
-import stylistic from '@stylistic/eslint-plugin';
-// import { Linter } from 'eslint'
+import js from '@eslint/js';
+import importPlugin from 'eslint-plugin-import';
 
 export default [
-  stylistic.configs.recommended,
-  pluginJs.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
-  {
-    files: ['**/*.{js,ts,tsx}'],
-  },
-  {
-    ignores: ['dist/'],
-  },
+  js.configs.recommended,
+
   {
     languageOptions: {
-      globals: globals.node,
+      globals: {
+        ...globals.node,
+        ...globals.jest,
+      },
       parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
     },
+    plugins: {
+      import: importPlugin,
+    },
     rules: {
-      '@typescript-eslint/no-unused-vars': 'off',
+      'no-underscore-dangle': [
+        'error',
+        {
+          allow: ['__filename', '__dirname'],
+        },
+      ],
+      'import/extensions': [
+        'error',
+        {
+          js: 'always',
+        },
+      ],
+      'import/no-named-as-default': 'off',
+      'import/no-named-as-default-member': 'off',
+      'no-console': 'off',
+      'import/no-extraneous-dependencies': 'off',
+      'object-curly-newline': 'off',
     },
   },
-]; // satisfies Linter.Config[]
+];
