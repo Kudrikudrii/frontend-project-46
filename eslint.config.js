@@ -3,19 +3,16 @@ import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 
 export default [
-  {
-    // Применяем рекомендованный конфиг с переопределением правил
-    ...js.configs.recommended,
-    rules: {
-      ...js.configs.recommended.rules,
-      'object-curly-newline': 'off', // Полностью отключаем правило
-    },
-  },
+  js.configs.recommended,
   {
     files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
       globals: {
         ...globals.browser,
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
       },
     },
     plugins: {
@@ -23,7 +20,13 @@ export default [
     },
     rules: {
       'no-shadow': 'off',
-      // 'object-curly-newline' больше не нужно отключать здесь, так как мы отключили его глобально
+      'object-curly-newline': 'off',
+      // Явно отключаем все правила от плагина import, которые могут конфликтовать
+      'import/no-unresolved': 'off',
+      'import/named': 'off',
+      'import/namespace': 'off',
+      'import/default': 'off',
+      'import/export': 'off',
     },
   },
 ];
