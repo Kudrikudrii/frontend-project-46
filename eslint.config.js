@@ -3,10 +3,14 @@ import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 
 export default [
-  // Базовый рекомендованный конфиг от ESLint
-  js.configs.recommended,
-
-  // Ваши кастомные настройки
+  {
+    // Применяем рекомендованный конфиг с переопределением правил
+    ...js.configs.recommended,
+    rules: {
+      ...js.configs.recommended.rules,
+      'object-curly-newline': 'off', // Полностью отключаем правило
+    },
+  },
   {
     files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
@@ -19,8 +23,7 @@ export default [
     },
     rules: {
       'no-shadow': 'off',
-      'object-curly-newline': 'off',
-      // Добавьте другие правила по необходимости
+      // 'object-curly-newline' больше не нужно отключать здесь, так как мы отключили его глобально
     },
   },
 ];
