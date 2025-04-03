@@ -1,26 +1,26 @@
-import { defineConfig } from 'eslint-define-config';
 import globals from 'globals';
 import js from '@eslint/js';
 import importPlugin from 'eslint-plugin-import';
 
-export default defineConfig([
-  { files: ['**/*.{js,mjs,cjs}'] },
+export default [
+  // Базовый рекомендованный конфиг от ESLint
+  js.configs.recommended,
+
+  // Ваши кастомные настройки
   {
     files: ['**/*.{js,mjs,cjs}'],
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+      },
     },
-  },
-  {
-    files: ['**/*.{js,mjs,cjs}'],
     plugins: {
-      js,
       import: importPlugin,
     },
-    extends: ['js/recommended'],
     rules: {
       'no-shadow': 'off',
       'object-curly-newline': 'off',
+      // Добавьте другие правила по необходимости
     },
   },
-]);
+];
