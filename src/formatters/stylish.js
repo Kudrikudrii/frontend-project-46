@@ -1,9 +1,9 @@
-const formatValue = (value, depth) => {
-  if (typeof value !== 'object' || value === null) {
-    return String(value);
+const formatValue = (val, depth) => {
+  if (typeof val !== 'object' || val === null) {
+    return String(val);
   }
   const currentIndent = ' '.repeat(depth * 4);
-  const lines = Object.entries(value).map(([key, value]) => `${currentIndent}    ${key}: ${formatValue(value, depth + 1)}`);
+  const lines = Object.entries(val).map(([key, value]) => `${currentIndent}    ${key}: ${formatValue(value, depth + 1)}`);
 
   return `{\n${lines.join('\n')}\n${currentIndent}}`;
 };
