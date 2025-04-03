@@ -8,22 +8,43 @@ const treeBuilder = (data1, data2) => {
     const newValue = data2[key];
 
     if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-      return { status: 'nested', key, children: treeBuilder(data1[key], data2[key]) };
+      return {
+        status: 'nested',
+        key,
+        children: treeBuilder(data1[key], data2[key]),
+      };
     }
 
     if (Object.hasOwn(data1, key) && Object.hasOwn(data2, key) && data1[key] !== data2[key]) {
-      return { status: 'updated', key, oldValue, newValue };
+      return {
+        status: 'updated',
+        key,
+        oldValue,
+        newValue,
+      };
     }
 
     if (!Object.hasOwn(data1, key) && Object.hasOwn(data2, key)) {
-      return { status: 'added', key, value: newValue };
+      return {
+        status: 'added',
+        key,
+        value: newValue,
+      };
     }
 
     if (Object.hasOwn(data1, key) && Object.hasOwn(data2, key) && data1[key] === data2[key]) {
-      return { status: 'unchanged', key, value: oldValue };
+      return {
+        status: 'unchanged',
+        key,
+        value: oldValue,
+      };
     }
 
-    return { status: 'removed', key, value: oldValue };
+    return {
+      status: 'removed',
+      key,
+      value: oldValue,
+    };
   });
   return getTree;
 };
